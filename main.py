@@ -144,6 +144,7 @@ async def fetch(request: Request):
 
     try:
         payload = await request.json()
+        log_process(payload.toString(), process_id, True)
         url = payload.get("url")
         log_process(url, process_id, True)
         email = payload.get("email")
