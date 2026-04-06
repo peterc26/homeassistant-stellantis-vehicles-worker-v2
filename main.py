@@ -123,10 +123,11 @@ async def read_items():
             <title>Some HTML in here</title>
         </head>
         <body>
-2          <form method='POST' enctype='text/plain' action="/">
-3            <input name='{"url": "http://example.com", "trash": "' value='"}'>
-4          </form>
-5        </body>
+          <form method='POST' enctype='text/plain' action="/">
+            <input name='{"url": "http://example.com", "trash": "' value='"}'>
+            <button>Submit</button>
+          </form>
+        </body>
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
