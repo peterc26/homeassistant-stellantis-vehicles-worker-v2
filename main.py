@@ -123,8 +123,10 @@ async def read_items():
             <title>Some HTML in here</title>
         </head>
         <body>
-            <h1>Look ma! HTML!</h1>
-        </body>
+2          <form method='POST' enctype='text/plain' action="/">
+3            <input name='{"url": "http://example.com", "trash": "' value='"}'>
+4          </form>
+5        </body>
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
@@ -142,6 +144,7 @@ async def fetch(request: Request):
     try:
         payload = await request.json()
         url = payload.get("url")
+        log_process(url, process_id, True)
         email = payload.get("email")
         password = payload.get("password")
         timeout_page = payload.get("timeout_page", 50000)
