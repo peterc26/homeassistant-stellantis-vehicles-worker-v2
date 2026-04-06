@@ -113,7 +113,21 @@ def http_response(message, process_id, status=400):
             "Access-Control-Allow-Headers": "Content-Type",
         }
     )
-
+    
+@app.get("/", response_class=HTMLResponse)
+async def read_items():
+    html_content = """
+    <html>
+        <head>
+            <title>Some HTML in here</title>
+        </head>
+        <body>
+            <h1>Look ma! HTML!</h1>
+        </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content, status_code=200)
+    
 @app.post("/")
 async def fetch(request: Request):
     global force_debug
