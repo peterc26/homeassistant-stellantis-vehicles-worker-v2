@@ -114,7 +114,7 @@ def http_response(message, process_id, status=400):
         }
     )
     
-@app.get("/", response_class=HTMLResponse)
+@app.get("/test", response_class=HTMLResponse)
 async def read_items():
     html_content = """
     <html>
