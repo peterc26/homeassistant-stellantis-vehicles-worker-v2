@@ -2,6 +2,7 @@ import time
 import asyncio
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse
 from playwright.async_api import async_playwright
 import uuid
 
