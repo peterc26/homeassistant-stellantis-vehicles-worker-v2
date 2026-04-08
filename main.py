@@ -126,8 +126,16 @@ async def read_items():
           <form>
             <label for="name">Url</label>
             <input type="text" name="url" id="url" />
+
             <label for="email">Email</label>
             <input type="email" name="email" id="email" />
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" />
+            
+            <label for="debug">Debug</label>
+            <input type="text" name="debug" id="debug" />
+            
             <button type="submit">Submit</button>
           </form>
           <script>
