@@ -123,10 +123,32 @@ async def read_items():
             <title>Some HTML in here</title>
         </head>
         <body>
-          <form method='POST' enctype='text/plain' action="/">
-            <input name='{"url": "http://example.com", "trash": "' value='"}'>
-            <button>Submit</button>
+          <form>
+            <label for="name">Url</label>
+            <input type="text" name="url" id="url" />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+            <button type="submit">Submit</button>
           </form>
+          <script>
+            function handleSubmit(event) {
+                event.preventDefault();
+
+                const data = new FormData(event.target);
+
+                // Do a bit of work to convert the entries to a plain JS object
+                const dataJs = Object.fromEntries(data.entries());
+
+                console.log({ dataJs });
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/", true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(dataJs));                
+            }
+            const form = document.querySelector('form');
+            form.addEventListener('submit', handleSubmit);          
+          </script>
         </body>
     </html>
     """
@@ -144,7 +166,6 @@ async def fetch(request: Request):
 
     try:
         payload = await request.json()
-        log_process(payload.toString(), process_id, True)
         url = payload.get("url")
         log_process(url, process_id, True)
         email = payload.get("email")
