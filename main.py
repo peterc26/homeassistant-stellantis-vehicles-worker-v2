@@ -175,12 +175,14 @@ async def fetch(request: Request):
     try:
         payload = await request.json()
         url = payload.get("url")
-        log_process(url, process_id, True)
         email = payload.get("email")
         password = payload.get("password")
         timeout_page = payload.get("timeout_page", 50000)
         timeout_input = payload.get("timeout_input", 50000)
         force_debug = payload.get("debug", False)
+
+        log_process(url, process_id, True)
+        log_process(email, process_id, force_debug)
 
         if not url or not email or not password:
             return http_response("Missing required params", process_id)
